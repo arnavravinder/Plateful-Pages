@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - Plateful</title>
+  <link rel="stylesheet" href="checkout.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>Plateful</h1>
+    </div>
+  </header>
+
+  <main class="checkout-page">
+    <div class="cart-items">
+      <h2>Your Cart</h2>
+    </div>
+    <div class="checkout-details">
+      <h2>Checkout</h2>
+      <img src="https://via.placeholder.com/300x300" alt="UPI QR Code">
+      <h3>Upload Payment Screenshot</h3>
+      <label for="payment-screenshot" class="upload-button">Upload Screenshot</label>
+      <input type="file" id="payment-screenshot">
+      <button class="receipt-button" onclick="generateReceipt()">Generate Receipt</button>
+    </div>
+  </main>
+
+  <script src="checkout.js"></script>
+</body>
+</html>
