@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Management - Plateful</title>
+  <link rel="stylesheet" href="styles/restaurant.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>Plateful</h1>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="restaurants.html">Restaurants</a>
+      <a href="about.html">About</a>
+      <a href="cart.html">Cart</a>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="onboarding-box" id="onboarding-box">
+      <form id="onboarding-form">
+        <div class="step active" id="step-1">
+          <h2>What's your restaurant's name?</h2>
+          <input id="restaurant-name" type="text" placeholder="Restaurant Name" required>
+          <button type="button" onclick="nextStep(2)">Next</button>
+        </div>
+        <div class="step" id="step-2">
+          <h2>What's the address of your restaurant?</h2>
+          <input id="restaurant-address" type="text" placeholder="Restaurant Address" required>
+          <button type="button" onclick="prevStep(1)">Back</button>
+          <button type="button" onclick="nextStep(3)">Next</button>
+        </div>
+        <div class="step" id="step-3">
+          <h2>What's the phone number of your restaurant?</h2>
+          <input id="restaurant-phone" type="tel" placeholder="Phone Number" required>
+          <button type="button" onclick="prevStep(2)">Back</button>
+          <button type="button" onclick="nextStep(4)">Next</button>
+        </div>
+        <div class="step" id="step-4">
+          <h2>Provide your Google Profile URL</h2>
+          <input id="google-profile" type="url" placeholder="Google Profile URL" required>
+          <button type="button" onclick="prevStep(3)">Back</button>
+          <button type="button" onclick="nextStep(5)">Next</button>
+        </div>
+        <div class="step" id="step-5">
+          <h2>Upload a banner image for your restaurant</h2>
+          <input id="restaurant-banner" type="file" accept="image/*" required>
+          <button type="button" onclick="prevStep(4)">Back</button>
+          <button type="button" onclick="nextStep(6)">Next</button>
+        </div>
+        <div class="step" id="step-6">
+          <h2>Rate your restaurant</h2>
+          <div class="star-rating">
+            <span class="star" data-value="1">&#9733;</span>
+            <span class="star" data-value="2">&#9733;</span>
+            <span class="star" data-value="3">&#9733;</span>
+            <span class="star" data-value="4">&#9733;</span>
+            <span class="star" data-value="5">&#9733;</span>
+          </div>
+          <button type="button" onclick="prevStep(5)">Back</button>
+          <button type="button" onclick="completeOnboarding()">Complete Onboarding</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="management-box" id="management-box" style="display: none;">
+      <h2>Restaurant Management</h2>
+      <div class="menu-management">
+        <h3>Menu Items</h3>
+        <div class="menu-form">
+          <input type="text" id="item-name" placeholder="Item Name">
+          <input type="number" id="item-price" placeholder="Item Price">
+          <input type="file" id="item-image" accept="image/*">
+          <button onclick="addItem()">Add Item</button>
+        </div>
+        <div class="menu-items" id="menu-items"></div>
+      </div>
+      <div class="live-orders">
+        <h3>Live Orders</h3>
+        <div id="orders"></div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <p>&copy; 2024 Plateful. All rights reserved.</p>
+  </footer>
+  <script src="scripts/restaurant.js"></script>
+</body>
+</html>
