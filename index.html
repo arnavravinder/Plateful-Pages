@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plateful - Customer Page</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>Plateful</h1>
+    </div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#restaurants">Restaurants</a>
+      <a href="#cart" id="cart-link">Cart (0)</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="filter" data-aos="fade-down">
+      <label for="cuisine">Filter by cuisine:</label>
+      <select id="cuisine">
+        <option value="all">All</option>
+        <option value="italian">Italian</option>
+        <option value="chinese">Chinese</option>
+        <option value="indian">Indian</option>
+        <option value="mexican">Mexican</option>
+      </select>
+      <div class="veg-filter">
+        <img src="https://img.icons8.com/fluency/48/vegetarian-food-symbol.png" alt="Veg" id="veg-icon">
+        <img src="https://img.icons8.com/fluency/48/non-vegetarian-food-symbol.png" alt="Non-Veg" id="nonveg-icon">
+      </div>
+    </section>
+
+    <section class="restaurants" data-aos="fade-up">
+      <div class="restaurant-card" onclick="openMenu('Restaurant 1', 'Location 1', '9 AM - 9 PM', '1.2 km')">
+        <img src="https://via.placeholder.com/300x200" alt="Restaurant Image">
+        <div class="restaurant-info">
+          <h2>Restaurant 1</h2>
+          <p>Location 1</p>
+        </div>
+      </div>
+      <div class="restaurant-card" onclick="openMenu('Restaurant 2', 'Location 2', '10 AM - 10 PM', '2.4 km')">
+        <img src="https://via.placeholder.com/300x200" alt="Restaurant Image">
+        <div class="restaurant-info">
+          <h2>Restaurant 2</h2>
+          <p>Location 2</p>
+        </div>
+      </div>
+      <div class="restaurant-card" onclick="openMenu('Restaurant 3', 'Location 3', '11 AM - 11 PM', '3.6 km')">
+        <img src="https://via.placeholder.com/300x200" alt="Restaurant Image">
+        <div class="restaurant-info">
+          <h2>Restaurant 3</h2>
+          <p>Location 3</p>
+        </div>
+      </div>
+      <div class="restaurant-card" onclick="openMenu('Restaurant 4', 'Location 4', '8 AM - 8 PM', '4.8 km')">
+        <img src="https://via.placeholder.com/300x200" alt="Restaurant Image">
+        <div class="restaurant-info">
+          <h2>Restaurant 4</h2>
+          <p>Location 4</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="restaurant-menu" class="restaurant-menu">
+    <button class="back-button" onclick="goBack()">Back</button>
+    <div class="restaurant-details">
+      <img id="restaurant-image" src="https://via.placeholder.com/300x200" alt="Restaurant Image">
+      <div>
+        <h2 id="restaurant-name">Restaurant Name</h2>
+        <p id="restaurant-address">Restaurant Address</p>
+        <p id="restaurant-timings">Timings</p>
+        <p id="restaurant-distance">Distance</p>
+      </div>
+    </div>
+    <div class="menu-items">
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/100x100" alt="Menu Item Image">
+        <div class="menu-item-info">
+          <h3>Item 1</h3>
+          <p>Description 1</p>
+          <p>$10</p>
+        </div>
+        <div class="cart-actions" id="cart-actions-item-1">
+          <button class="add-to-cart" onclick="addToCart('Item 1', 10, 'cart-actions-item-1', 'Restaurant 1', 'Location 1')">ADD</button>
+        </div>
+      </div>
+      <div class="menu-item">
+        <img src="https://via.placeholder.com/100x100" alt="Menu Item Image">
+        <div class="menu-item-info">
+          <h3>Item 2</h3>
+          <p>Description 2</p>
+          <p>$12</p>
+        </div>
+        <div class="cart-actions" id="cart-actions-item-2">
+          <button class="add-to-cart" onclick="addToCart('Item 2', 12, 'cart-actions-item-2', 'Restaurant 2', 'Location 2')">ADD</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 Plateful. All rights reserved.</p>
+  </footer>
+
+  <div id="cart-popup" class="cart-popup">
+    <div class="cart-popup-content">
+      <span class="close" onclick="closeCartPopup()">&times;</span>
+      <h2>Cart</h2>
+      <div id="cart-items"></div>
+      <button class="checkout-button" onclick="initiateCheckout()">Checkout</button>
+    </div>
+  </div>
+
+  <script>
+    AOS.init();
+  </script>
+  <script src="scripts.js"></script>
+</body>
+</html>
