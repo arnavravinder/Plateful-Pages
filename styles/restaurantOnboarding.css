@@ -24,18 +24,18 @@ body, html {
   padding: 20px;
 }
 
-.onboarding-box, .management-box {
+.onboarding-box {
   background: #fff;
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 100%;
-  max-width: 600px;
+  max-width: 800px;
   animation: fadeIn 0.5s;
 }
 
-.onboarding-box h2, .management-box h2 {
+.onboarding-box h2 {
   font-size: 2rem;
   color: #2d9ce1;
   margin-bottom: 1rem;
@@ -59,6 +59,7 @@ body, html {
 .input-group input:focus {
   border-color: #2d9ce1;
   box-shadow: 0 0 5px rgba(45, 156, 225, 0.5);
+  outline: none;
 }
 
 button {
@@ -102,52 +103,16 @@ button:hover {
   color: #f03562;
 }
 
-.management-box h3 {
-  margin-top: 2rem;
-  font-size: 1.5rem;
-  color: #2d9ce1;
-}
-
-.menu-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.menu-form input {
-  margin: 0.5rem 0;
-}
-
-.menu-items, #orders {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.menu-item, .order-item {
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background: #fff;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 1rem;
-  width: 100%;
-  max-width: 400px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: transform 0.3s ease;
-}
-
-.menu-item:hover, .order-item:hover {
-  transform: scale(1.02);
-}
-
-.menu-item img, .order-item img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 5px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  z-index: 1000;
 }
 
 footer {
