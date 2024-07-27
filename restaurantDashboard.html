@@ -9,10 +9,20 @@
 </head>
 <body>
   <div class="container">
-    <div class="management-box" id="management-box">
-      <h2>Restaurant Management</h2>
-      <div class="menu-management">
-        <h3>Menu Items</h3>
+    <div class="sidebar">
+      <h2>Plateful</h2>
+      <nav>
+        <ul>
+          <li><a href="#menu-management">Menu Management</a></li>
+          <li><a href="#your-menu">Your Menu</a></li>
+          <li><a href="#live-orders">Live Orders</a></li>
+        </ul>
+      </nav>
+      <button id="open-for-work" onclick="toggleOpenForWork()">Open for Work</button>
+    </div>
+    <div class="content">
+      <section id="menu-management" class="management-box">
+        <h2>Menu Management</h2>
         <div class="menu-form">
           <div class="input-group">
             <input type="text" id="item-name" placeholder="Item Name">
@@ -29,10 +39,31 @@
           </label>
           <button onclick="addItem()">Add Item</button>
         </div>
-        <div class="menu-items" id="menu-items"></div>
-      </div>
-      <div class="live-orders">
-        <h3>Live Orders</h3>
+      </section>
+      <section id="your-menu" class="management-box">
+        <h2>Your Menu</h2>
+        <div class="menu-items" id="menu-items">
+          <!-- Placeholder items -->
+          <div class="menu-item">
+            <img src="https://via.placeholder.com/100" alt="Placeholder Image">
+            <h4>Sample Item 1</h4>
+            <p>Price: $10.00</p>
+            <p>Quantity: 5</p>
+            <button onclick="removeItem(this)">Remove</button>
+            <button onclick="editItem(this)">Edit</button>
+          </div>
+          <div class="menu-item">
+            <img src="https://via.placeholder.com/100" alt="Placeholder Image">
+            <h4>Sample Item 2</h4>
+            <p>Price: $12.00</p>
+            <p>Quantity: 3</p>
+            <button onclick="removeItem(this)">Remove</button>
+            <button onclick="editItem(this)">Edit</button>
+          </div>
+        </div>
+      </section>
+      <section id="live-orders" class="management-box">
+        <h2>Live Orders</h2>
         <table id="orders-table">
           <thead>
             <tr>
@@ -45,7 +76,6 @@
             </tr>
           </thead>
           <tbody id="orders">
-            <!-- Sample Order Row -->
             <tr>
               <td>1</td>
               <td>John Doe</td>
@@ -59,10 +89,9 @@
               <td>$25.00</td>
               <td><input type="checkbox" onclick="markOrderFulfilled(this)"></td>
             </tr>
-            <!-- End Sample Order Row -->
           </tbody>
         </table>
-      </div>
+      </section>
     </div>
   </div>
   <script src="scripts/restaurantDashboard.js"></script>
