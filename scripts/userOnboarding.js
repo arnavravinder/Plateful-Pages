@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function nextStep() {
     const currentGroup = document.querySelector(`.input-group[data-step="${currentStep}"] input`);
     if (currentGroup && !currentGroup.value) {
-      alert('Please fill out this field.');
+      showErrorPopup();
       return;
     }
     currentStep++;
@@ -31,6 +31,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
+  function showErrorPopup() {
+    document.querySelector('.container').classList.add('blur');
+    document.getElementById('error-popup').style.display = 'flex';
+  }
+  
+  function closeErrorPopup() {
+    document.querySelector('.container').classList.remove('blur');
+    document.getElementById('error-popup').style.display = 'none';
+  }
+  
   function submitOnboarding() {
     const userName = document.getElementById('user-name').value;
     const userEmail = document.getElementById('user-email').value;
@@ -39,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const userProfilePicture = document.getElementById('user-profile-picture').files[0];
   
     if (!userName || !userEmail || !userPhone || !userAddress || !userProfilePicture) {
-      alert('Please fill out all fields.');
+      showErrorPopup();
       return;
     }
   
