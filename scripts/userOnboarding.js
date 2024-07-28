@@ -18,6 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
   function nextStep() {
+    const currentGroup = document.querySelector(`.input-group[data-step="${currentStep}"] input`);
+    if (currentGroup && !currentGroup.value) {
+      alert('Please fill out this field.');
+      return;
+    }
     currentStep++;
     if (currentStep > 5) {
       submitOnboarding();
@@ -38,16 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
   
-    alert('Processing your information. Please wait...');
+    document.querySelector('.container').classList.add('blur');
+    document.getElementById('success-popup').style.display = 'flex';
+  }
   
-    setTimeout(() => {
-      alert('Onboarding completed successfully!');
-    }, 2000);
-  
-    document.getElementById('user-name').value = '';
-    document.getElementById('user-email').value = '';
-    document.getElementById('user-phone').value = '';
-    document.getElementById('user-address').value = '';
-    document.getElementById('user-profile-picture').value = '';
+  function redirectToRestaurants() {
+    window.location.href = 'restaurants.html';
   }
   
