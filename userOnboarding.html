@@ -21,27 +21,33 @@
       <section id="user-onboarding" class="onboarding-box">
         <h2>User Onboarding</h2>
         <form id="onboarding-form">
-          <div class="input-group">
+          <div class="input-group" data-step="1">
             <label for="user-name">Name</label>
             <input type="text" id="user-name" placeholder="Your Name">
+            <button type="button" onclick="nextStep()">Next</button>
           </div>
-          <div class="input-group">
+          <div class="input-group" data-step="2">
             <label for="user-email">Email</label>
             <input type="email" id="user-email" placeholder="Your Email">
+            <button type="button" onclick="nextStep()">Next</button>
           </div>
-          <div class="input-group">
+          <div class="input-group" data-step="3">
             <label for="user-phone">Phone Number</label>
             <input type="tel" id="user-phone" placeholder="Your Phone Number">
+            <button type="button" onclick="nextStep()">Next</button>
           </div>
-          <div class="input-group">
+          <div class="input-group" data-step="4">
             <label for="user-address">Address</label>
             <input type="text" id="user-address" placeholder="Your Address">
+            <button type="button" onclick="nextStep()">Next</button>
           </div>
-          <label class="upload-button">
-            <input type="file" id="user-profile-picture" accept="image/*">
-            Upload Profile Picture
-          </label>
-          <button type="button" onclick="submitOnboarding()">Submit</button>
+          <div class="input-group" data-step="5">
+            <label class="upload-button">
+              <input type="file" id="user-profile-picture" accept="image/*">
+              Upload Profile Picture
+            </label>
+            <button type="button" onclick="submitOnboarding()">Submit</button>
+          </div>
         </form>
       </section>
     </div>
