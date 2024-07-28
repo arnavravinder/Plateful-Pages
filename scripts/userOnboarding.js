@@ -7,7 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function showStep(step) {
     const inputGroups = document.querySelectorAll('.input-group');
     inputGroups.forEach(group => {
-      group.style.display = group.getAttribute('data-step') == step ? 'block' : 'none';
+      if (group.getAttribute('data-step') == step) {
+        group.style.display = 'block';
+        group.style.opacity = '1';
+      } else {
+        group.style.display = 'none';
+        group.style.opacity = '0';
+      }
     });
   }
   
