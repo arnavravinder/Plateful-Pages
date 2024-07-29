@@ -13,79 +13,61 @@
       <h1>Plateful</h1>
     </div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="restaurants.html">Restaurants</a>
-      <a href="about.html">About</a>
-      <a href="cart.html">Cart</a>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
     </nav>
   </header>
   <div class="container">
-    <div class="onboarding-box" id="onboarding-box">
-      <form id="onboarding-form">
-        <div class="step active" id="step-1">
-          <h2>What's your restaurant's name?</h2>
-          <div class="input-group">
-            <input id="restaurant-name" type="text" placeholder="Restaurant Name" required>
+    <div class="content">
+      <section id="restaurant-onboarding" class="onboarding-box">
+        <h2>Restaurant Onboarding</h2>
+        <form id="onboarding-form">
+          <div class="input-group" data-step="1">
+            <label for="restaurant-name">Restaurant Name</label>
+            <input type="text" id="restaurant-name" placeholder="Restaurant Name">
+            <button type="button" onclick="nextStep()">Next</button>
           </div>
-          <button type="button" onclick="nextStep(2)">Next</button>
-        </div>
-        <div class="step" id="step-2">
-          <h2>What's the address of your restaurant?</h2>
-          <div class="input-group">
-            <input id="restaurant-address" type="text" placeholder="Restaurant Address" required>
+          <div class="input-group" data-step="2">
+            <label for="restaurant-address">Address</label>
+            <input type="text" id="restaurant-address" placeholder="Restaurant Address">
+            <button type="button" onclick="nextStep()">Next</button>
           </div>
-          <button type="button" onclick="prevStep(1)">Back</button>
-          <button type="button" onclick="nextStep(3)">Next</button>
-        </div>
-        <div class="step" id="step-3">
-          <h2>What's the phone number of your restaurant?</h2>
-          <div class="input-group">
-            <input id="restaurant-phone" type="tel" placeholder="Phone Number" required>
+          <div class="input-group" data-step="3">
+            <label for="restaurant-phone">Phone Number</label>
+            <input type="tel" id="restaurant-phone" placeholder="Restaurant Phone Number">
+            <button type="button" onclick="nextStep()">Next</button>
           </div>
-          <button type="button" onclick="prevStep(2)">Back</button>
-          <button type="button" onclick="nextStep(4)">Next</button>
-        </div>
-        <div class="step" id="step-4">
-          <h2>Provide your Google Profile URL</h2>
-          <div class="input-group">
-            <input id="google-profile" type="url" placeholder="Google Profile URL" required>
+          <div class="input-group" data-step="4">
+            <label for="google-profile">Google Profile Link</label>
+            <input type="url" id="google-profile" placeholder="Google Profile Link">
+            <button type="button" onclick="nextStep()">Next</button>
           </div>
-          <button type="button" onclick="prevStep(3)">Back</button>
-          <button type="button" onclick="nextStep(5)">Next</button>
-        </div>
-        <div class="step" id="step-5">
-          <h2>Upload a banner image for your restaurant</h2>
-          <div class="input-group">
-            <input id="restaurant-banner" type="file" accept="image/*" required>
+          <div class="input-group" data-step="5">
+            <label for="upi-qr">Upload UPI QR Code</label>
+            <input type="file" id="upi-qr" accept="image/*">
+            <button type="button" onclick="submitOnboarding()">Submit</button>
           </div>
-          <button type="button" onclick="prevStep(4)">Back</button>
-          <button type="button" onclick="nextStep(6)">Next</button>
-        </div>
-        <div class="step" id="step-6">
-          <h2>Rate your restaurant</h2>
-          <div class="star-rating">
-            <span class="star" data-value="1">&#9733;</span>
-            <span class="star" data-value="2">&#9733;</span>
-            <span class="star" data-value="3">&#9733;</span>
-            <span class="star" data-value="4">&#9733;</span>
-            <span class="star" data-value="5">&#9733;</span>
-          </div>
-          <button type="button" onclick="prevStep(5)">Back</button>
-          <button type="button" onclick="completeOnboarding()">Complete Onboarding</button>
-        </div>
-      </form>
-      <div id="error-message" class="popup" style="display: none;">
-        <p>Please fill in all required fields.</p>
-        <button onclick="closePopup()">Close</button>
-      </div>
-      <div id="success-message" style="display: none;">
-        <h2>Processing your request...</h2>
-      </div>
+        </form>
+      </section>
     </div>
   </div>
-  <footer>
-    <p>&copy; 2024 Plateful. All rights reserved.</p>
-  </footer>
+  <div id="error-popup" class="popup">
+    <div class="popup-content">
+      <h3>Error</h3>
+      <p>Please fill out this field.</p>
+      <button onclick="closeErrorPopup()">Close</button>
+    </div>
+  </div>
+  <div id="success-popup" class="popup">
+    <div class="popup-content">
+      <h3>Onboarding Completed</h3>
+      <p>Thank you for providing your details.</p>
+      <button onclick="redirectToDashboard()">Continue</button>
+    </div>
+  </div>
   <script src="scripts/restaurantOnboarding.js"></script>
 </body>
 </html>

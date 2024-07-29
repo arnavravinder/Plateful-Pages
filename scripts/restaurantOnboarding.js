@@ -1,81 +1,87 @@
-function nextStep(step) {
-  const currentStep = document.querySelector('.step.active');
-  const nextStep = document.getElementById(`step-${step}`);
-  if (validateStep(currentStep)) {
-    currentStep.classList.remove('active');
-    nextStep.classList.add('active');
-    nextStep.classList.add('animate__animated', 'animate__fadeIn');
-  } else {
+document.addEventListener('DOMContentLoaded', () => {
+  showStep(1);
+});
+
+let currentStep = 1;
+
+function showStep(step) {
+  const inputGroups = document.querySelectorAll('.input-group');
+  inputGroups.forEach(group => {
+    if (group.getAttribute('data-step') == step) {
+      group.style.display = 'block';
+      group.style.opacity = '1';
+    } else {
+      group.style.display = 'none';
+      group.style.opacity = '0';
+    }
+  });
+}
+
+function nextStep() {
+  const currentGroup = document.querySelector(`.input-group[data-step="${currentStep}"] input`);
+  if (currentGroup && !currentGroup.value) {
     showErrorPopup();
+    return;
+  }
+  currentStep++;
+  if (currentStep > 5) {
+    submitOnboarding();
+  } else {
+    showStep(currentStep);
   }
 }
 
-function prevStep(step) {
-  const currentStep = document.querySelector('.step.active');
-  const prevStep = document.getElementById(`step-${step}`);
-  currentStep.classList.remove('active');
-  prevStep.classList.add('active');
-  prevStep.classList.add('animate__animated', 'animate__fadeIn');
-}
-
-function validateStep(step) {
-  const inputs = step.querySelectorAll('input[required]');
-  let isValid = true;
-  inputs.forEach(input => {
-    if (!input.value) {
-      isValid = false;
-    }
-  });
-  return isValid;
-}
-
 function showErrorPopup() {
-  document.getElementById('error-message').style.display = 'block';
+  document.querySelector('.container').classList.add('blur');
+  document.getElementById('error-popup').style.display = 'flex';
 }
 
-function closePopup() {
-  document.getElementById('error-message').style.display = 'none';
+function closeErrorPopup() {
+  document.querySelector('.container').classList.remove('blur');
+  document.getElementById('error-popup').style.display = 'none';
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelector('.star-rating').addEventListener('click', (e) => {
-    if (e.target.classList.contains('star')) {
-      const value = e.target.getAttribute('data-value');
-      document.querySelectorAll('.star').forEach(star => {
-        star.classList.toggle('selected', star.getAttribute('data-value') <= value);
-      });
-    }
-  });
-});
-
-function completeOnboarding() {
-  const name = document.getElementById('restaurant-name').value;
-  const address = document.getElementById('restaurant-address').value;
-  const phone = document.getElementById('restaurant-phone').value;
+async function submitOnboarding() {
+  const restaurantName = document.getElementById('restaurant-name').value;
+  const restaurantAddress = document.getElementById('restaurant-address').value;
+  const restaurantPhone = document.getElementById('restaurant-phone').value;
   const googleProfile = document.getElementById('google-profile').value;
-  const banner = document.getElementById('restaurant-banner').files[0];
-  const rating = document.querySelector('.star.selected:last-of-type').getAttribute('data-value');
+  const upiQr = document.getElementById('upi-qr').files[0];
 
-  console.log({
-    name,
-    address,
-    phone,
-    googleProfile,
-    banner,
-    rating
-  });
-
-  if (validateStep(document.querySelector('.step.active'))) {
-    // Show success message
-    document.getElementById('onboarding-box').style.display = 'none';
-    document.getElementById('success-message').style.display = 'block';
-
-    // Simulate processing delay
-    setTimeout(() => {
-      document.getElementById('success-message').style.display = 'none';
-      window.location.href = "restaurantDashboard.html";
-    }, 2000);
-  } else {
+  if (!restaurantName || !restaurantAddress || !restaurantPhone || !googleProfile || !upiQr) {
     showErrorPopup();
+    return;
+  }
+
+  const rating = await getStarRating(googleProfile);
+
+  if (rating === null) {
+    alert('Could not retrieve the star rating. Please check the Google profile link.');
+    return;
+  }
+
+  console.log('Star Rating:', rating);
+
+  document.querySelector('.container').classList.add('blur');
+  document.getElementById('success-popup').style.display = 'flex';
+}
+
+function redirectToDashboard() {
+  window.location.href = 'restaurantDashboard.html';
+}
+
+async function getStarRating(googleProfileUrl) {
+  const proxyUrl = 'https://api.allorigins.win/get?url=';
+  try {
+    const response = await fetch(proxyUrl + encodeURIComponent(googleProfileUrl));
+    const data = await response.json();
+    const html = data.contents;
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const ratingElement = doc.querySelector('[class*="gm2-display-2"]');
+    return ratingElement ? ratingElement.textContent : null;
+  } catch (error) {
+    console.error('Error fetching star rating:', error);
+    return null;
   }
 }
